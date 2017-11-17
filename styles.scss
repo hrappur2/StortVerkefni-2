@@ -1,5 +1,15 @@
+.videolist {
 
-html {
+  &__video {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  &__poster { //eitthvað rugl bara til að sjá allar myndirnar
+    max-width: 600px;
+    max-height: 100px;
+  }
 }
 
 //@import "scss/form"; til dæmis

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 var program = function () {
-  var content;
+  var videolist;
 
   function showData(data) {
     //sækir gögn og býr til element
@@ -21,8 +21,23 @@ var program = function () {
     var a = document.createElement('div');
     a.classList.add('videolist__category');
     a.innerHTML = data.categories[index].title;
+    videolist.appendChild(a);
 
-    content.appendChild(a);
+    var b = document.createElement('div');
+    b.classList.add('videolist__video');
+    a.appendChild(b);
+
+    var lengd = data.categories[index].videos.length; //lengd video fylkisins fyrir viðkomandi category
+
+    for (var i = 0; i < lengd; i++) {
+      //console.log(data.categories[index].videos[i]);
+      var id = data.categories[index].videos[i];
+      //fáum 1-4 úr id en byrjum á 0 þess vegna -1:
+      var c = document.createElement('img'); //ATH á eftir að adda link á myndirnar
+      c.setAttribute('src', data.videos[id - 1].poster);
+      c.classList.add('videolist__poster');
+      b.appendChild(c);
+    }
   }
 
   function readJSON(data) {
@@ -42,7 +57,7 @@ var program = function () {
   }
 
   function init() {
-    content = document.querySelector('.content'); //divið í index.html
+    videolist = document.querySelector('.videolist'); //divið í index.html
     readJSON(); //lesum videos.json
   }
 

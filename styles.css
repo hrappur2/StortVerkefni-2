@@ -1,2 +1,10 @@
+.videolist__video {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
 
-/*# sourceMappingURL=data:application/json;base64,ewoJInZlcnNpb24iOiAzLAoJImZpbGUiOiAic3R5bGVzLmNzcyIsCgkic291cmNlcyI6IFsKCQkic3R5bGVzLnNjc3MiCgldLAoJIm5hbWVzIjogW10sCgkibWFwcGluZ3MiOiAiIgp9 */
+.videolist__poster {
+  max-width: 600px;
+  max-height: 100px; }
+
+/*# sourceMappingURL=data:application/json;base64,ewoJInZlcnNpb24iOiAzLAoJImZpbGUiOiAic3R5bGVzLmNzcyIsCgkic291cmNlcyI6IFsKCQkic3R5bGVzLnNjc3MiCgldLAoJIm5hbWVzIjogW10sCgkibWFwcGluZ3MiOiAiQUFFRSxBQUFBLGlCQUFRLENBQUM7RUFDUCxPQUFPLEVBQUUsSUFBSTtFQUNiLFNBQVMsRUFBRSxJQUFJO0VBQ2YsYUFBYSxFQUFFLEdBQUcsQ0FBQyxLQUFLLENBQUMsa0JBQWtCLEdBQzVDOztBQUVELEFBQUEsa0JBQVMsQ0FBQztFQUNSLFNBQVMsRUFBRSxLQUFLO0VBQ2hCLFVBQVUsRUFBRSxLQUFLLEdBQ2xCIgp9 */
