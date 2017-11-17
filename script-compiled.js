@@ -24,19 +24,28 @@ var program = function () {
     videolist.appendChild(a);
 
     var b = document.createElement('div');
-    b.classList.add('videolist__video');
+    b.classList.add('videolist__videos');
     a.appendChild(b);
 
     var lengd = data.categories[index].videos.length; //lengd video fylkisins fyrir viðkomandi category
 
+    //ATH eftir að adda link á myndir og ná í tímaupplýsingar úr json
     for (var i = 0; i < lengd; i++) {
-      //console.log(data.categories[index].videos[i]);
       var id = data.categories[index].videos[i];
-      //fáum 1-4 úr id en byrjum á 0 þess vegna -1:
-      var c = document.createElement('img'); //ATH á eftir að adda link á myndirnar
-      c.setAttribute('src', data.videos[id - 1].poster);
-      c.classList.add('videolist__poster');
+
+      var c = document.createElement('div');
+      c.classList.add('videolist__videoData');
       b.appendChild(c);
+
+      var d = document.createElement('img'); //ATH á eftir að adda link á myndirnar
+      d.setAttribute('src', data.videos[id - 1].poster);
+      d.classList.add('videolist__poster');
+      c.appendChild(d);
+
+      var e = document.createElement('h4');
+      e.classList.add('videolist__title');
+      e.innerHTML = data.videos[id - 1].title;
+      c.appendChild(e);
     }
   }
 
