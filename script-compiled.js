@@ -7,11 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
 var program = function () {
   var content;
 
-  function click(e) {
-    e.preventDefault(); //slökkt á hefðbundinni virkni
-    randomString();
-  }
-
   function showData(data) {
     //sækir gögn og býr til element
     var lengd = data.categories.length; //hversu margir flokkar
@@ -49,7 +44,6 @@ var program = function () {
   function init() {
     content = document.querySelector('.content'); //divið í index.html
     readJSON(); //lesum videos.json
-    //button.addEventListener('click', click);
   }
 
   return {
