@@ -10,14 +10,26 @@
     margin: 50px;
   }
 
+  &__posterAndDuration {
+
+  }
+
   &__poster { //eitthvað rugl bara til að sjá allar myndirnar
     max-width: 600px;
     max-height: 100px;
     border-radius: 2px;
   }
 
+  &__duration { //þarf að setja ofan á poster
+
+  }
+
   &__title {
     margin: 0;
+  }
+
+  &__created {
+
   }
 }
 

@@ -33,15 +33,65 @@ var program = (function() {
       c.classList.add('videolist__videoData');
       b.appendChild(c);
 
-      var d = document.createElement('img'); //ATH á eftir að adda link á myndirnar
-      d.setAttribute('src', data.videos[id-1].poster);
-      d.classList.add('videolist__poster');
+      var d = document.createElement('div');
+      d.classList.add('videolist__posterAndDuration');
       c.appendChild(d);
 
-      var e = document.createElement('h4');
-      e.classList.add('videolist__title');
-      e.innerHTML = data.videos[id-1].title;
-      c.appendChild(e);
+      var e = document.createElement('img'); //ATH á eftir að adda link á myndirnar
+      e.setAttribute('src', data.videos[id-1].poster);
+      e.classList.add('videolist__poster');
+      d.appendChild(e);
+
+      var f = document.createElement('div');
+      f.classList.add('videolist__duration');
+      var dur = data.videos[id-1].duration;
+      var minutes = Math.floor(dur / 60);
+      var seconds = dur - minutes * 60;
+      if ((seconds/10) < 1) seconds = '0' + seconds; //ef sekúndur eru undir 10
+      f.innerHTML = minutes + ":" + seconds;
+      d.appendChild(f);
+
+      var g = document.createElement('h4');
+      g.classList.add('videolist__title');
+      g.innerHTML = data.videos[id-1].title;
+      c.appendChild(g);
+
+      const created = Date.now() - data.videos[id-1].created; //ms síðan var uploadað
+      const s = created / 1000; //sec síðan uploadað
+      const days = Math.floor(s / (60 * 60 * 24));
+      const hours = Math.floor(s / (60 * 60));
+      var strengur;
+      if ((days/365) >= 1) {
+        const a = parseInt(days/365);
+        if (a == 1) strengur = 'Fyrir 1 ári síðan';
+        else strengur = 'Fyrir ' + a + ' árum síðan';
+      }
+      else if ((days/30) >= 1) {
+        const a = parseInt(days/30);
+        if (a == 1) strengur = 'Fyrir 1 mánuði síðan';
+        else strengur = 'Fyrir ' + a + ' mánuðum síðan';
+      }
+      else if ((days/7) >= 1) {
+        const a = parseInt(days/7);
+        if (a == 1) strengur = 'Fyrir 1 viku síðan';
+        else strengur = 'Fyrir ' + a + ' vikum síðan';
+      }
+      else if ((days) >= 1) {
+        const a = parseInt(days);
+        if (a == 1) strengur = 'Fyrir 1 degi síðan';
+        else strengur = 'Fyrir ' + a + ' dögum síðan';
+      }
+      else {
+        const a = parseInt(hours);
+        if (a == 1) strengur = 'Fyrir 1 klukkustund síðan';
+        else strengur = 'Fyrir ' + a + ' klukkustundum síðan';
+      }
+      console.log(strengur);
+
+      var h = document.createElement('div');
+      h.classList.add('videolist__created');
+      h.innerHTML = strengur;
+      c.appendChild(h);
     }
   }
 
