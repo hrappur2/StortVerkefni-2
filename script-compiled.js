@@ -20,7 +20,9 @@ var program = function () {
   function createElement(data, index) {
     var a = document.createElement('div');
     a.classList.add('videolist__category');
-    a.innerHTML = data.categories[index].title;
+    var h2 = document.createElement('h2'); //element fyrir category titil
+    h2.innerHTML = data.categories[index].title;
+    a.appendChild(h2);
     videolist.appendChild(a);
 
     var b = document.createElement('div');
