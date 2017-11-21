@@ -58,8 +58,9 @@ var program = (function() {
       var c = document.createElement('div');
       c.classList.add('videolist__videoData');
       c.classList.add('col');
-      c.classList.add('col-6');
-      c.classList.add('col-sm-12');
+      c.classList.add('col-4');
+      c.classList.add('col-sm-6');
+      c.classList.add('col-sms-12');
       b.appendChild(c);
 
       var d = document.createElement('div');

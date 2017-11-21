@@ -17,9 +17,9 @@
     border-bottom: 1px solid #eee;
   }
 
-  /*&__videoData {
-    margin: auto;
-  }*/
+  &__videoData {
+    cursor: pointer;
+  }
 
   &__posterAndDuration {
     position: relative;
@@ -38,11 +38,13 @@
     padding: 0 $gutter/4;
   }
 
-  /*&__title {
-    margin: 0;
+  &__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  &__created {
+  /*&__created {
 
   }*/
 }
