@@ -12,4 +12,28 @@
   &__h1 {
     text-align: center;
   }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    max-width: 50px;
+    max-height: 50px;
+    margin: 0 5px;
+  }
+
+  &__goback {
+    display: flex;
+    justify-content: center;
+    margin: 2em;
+  }
+
+  &__gobacklink {
+    font-size: 1em;
+  }
+
+
+
 }

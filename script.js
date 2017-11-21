@@ -4,6 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 var program = (function() {
   var videolist;
+  var source;
+
+  var imagediv;
+  var back;
+  var next;
+  var pause;
+  var play;
+  var mute;
+  var unmute;
+  var fullscreen;
 
   function showData(data) { //sækir gögn og býr til element
     const lengd = data.categories.length; //hversu margir flokkar
@@ -134,7 +144,7 @@ var program = (function() {
     const videodisplay = document.querySelector('.videodisplay');
     const video = document.createElement('div');
     video.classList.add('videoplay__video');
-    const source = document.createElement('video');
+    source = document.createElement('video');
     source.setAttribute('autoplay','');
     source.classList.add('videoplay__source');
     var url = window.location.href;
@@ -166,10 +176,108 @@ var program = (function() {
     r3.classList.add('row-center');
     video.classList.add('col');
     video.classList.add('col-8');
-
     r3.appendChild(video);
 
     videodisplay.appendChild(r3);
+
+    imagediv = document.createElement('div');
+
+    imagediv.classList.add('videoplay__buttons');
+
+    back = document.createElement('img');
+    next = document.createElement('img');
+    pause = document.createElement('img');
+    play = document.createElement('img');
+    mute = document.createElement('img');
+    unmute = document.createElement('img');
+    fullscreen = document.createElement('img');
+
+    back.classList.add('videoplay__button');
+    next.classList.add('videoplay__button');
+    pause.classList.add('videoplay__button');
+    play.classList.add('videoplay__button');
+    mute.classList.add('videoplay__button');
+    unmute.classList.add('videoplay__button');
+    fullscreen.classList.add('videoplay__button');
+
+    back.src = "img/back.svg";
+    next.src = "img/next.svg";
+    pause.src = "img/pause.svg";
+    play.src = "img/play.svg";
+    mute.src = "img/mute.svg";
+    unmute.src = "img/unmute.svg";
+    fullscreen.src = "img/fullscreen.svg";
+
+    imagediv.appendChild(back);
+    imagediv.appendChild(pause);
+    imagediv.appendChild(mute);
+    imagediv.appendChild(fullscreen);
+    imagediv.appendChild(next);
+    videodisplay.appendChild(imagediv);
+
+    back.addEventListener("click", backEvent);
+    next.addEventListener("click", nextEvent);
+    pause.addEventListener("click", pauseEvent);
+    play.addEventListener("click", playEvent);
+    mute.addEventListener("click", muteEvent);
+    unmute.addEventListener("click", unmuteEvent);
+    fullscreen.addEventListener("click", fullscreenEvent);
+
+    const gobackDiv = document.createElement('div');
+    const gobackLink = document.createElement('a');
+
+    gobackDiv.classList.add('videoplay__goback');
+    gobackLink.classList.add('videoplay__gobackLink');
+
+
+    gobackLink.appendChild(document.createTextNode('Til baka'));
+    gobackLink.title = 'Til baka';
+    gobackLink.href = 'index.html';
+
+    gobackDiv.appendChild(gobackLink);
+    videodisplay.appendChild(gobackDiv);
+  }
+
+  function backEvent(e) {
+    e.preventDefault();
+    source.currentTime -= 3;
+  }
+
+  function nextEvent(e) {
+    e.preventDefault();
+    source.currentTime += 3;
+  }
+
+  function pauseEvent(e) {
+    e.preventDefault();
+    source.pause();
+    imagediv.removeChild(pause);
+    imagediv.insertBefore(play, imagediv.children[1]);
+  }
+
+  function playEvent(e) {
+    e.preventDefault();
+    source.play();
+    imagediv.removeChild(play);
+    imagediv.insertBefore(pause, imagediv.children[1]);
+  }
+
+  function muteEvent(e) {
+    e.preventDefault();
+    source.muted = true;
+    imagediv.removeChild(mute);
+    imagediv.insertBefore(unmute, imagediv.children[2]);
+  }
+
+  function unmuteEvent(e) {
+    e.preventDefault();
+    source.muted = false;
+    imagediv.removeChild(unmute);
+    imagediv.insertBefore(mute, imagediv.children[2]);
+  }
+
+  function fullscreenEvent(e) {
+    source.webkitRequestFullscreen();
   }
 
   function readJSON(data) { //fall til að lesa videos.json
