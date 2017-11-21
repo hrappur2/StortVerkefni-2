@@ -127,21 +127,43 @@ var program = function () {
     var getlocal = window.localStorage.getItem('datastore');
     var localparse = JSON.parse(getlocal);
     var videodisplay = document.querySelector('.videodisplay');
-    var video = document.createElement('video');
-    var source = document.createElement('source');
-    video.setAttribute('autoplay', '');
+    var video = document.createElement('div');
+    video.classList.add('videoplay__video');
+    var source = document.createElement('video');
+    source.setAttribute('autoplay', '');
+    source.classList.add('videoplay__source');
     var url = window.location.href;
     var urlid = url.substring(url.length - 1);
     var playme;
+    var playmetitle;
     var iflength = localparse.videos.length;
     if (urlid <= iflength) {
       playme = localparse.videos[urlid - 1].video;
+      playmetitle = localparse.videos[urlid - 1].title;
     } else {
       console.log('vantar error display herna');
     }
+    var h1video = document.createElement('h1');
+    h1video.classList.add('videoplay__h1');
+    var jsontitle = JSON.stringify(playmetitle);
+    h1video.textContent = jsontitle.substring(1, jsontitle.length - 1);
+    var h1coldiv = document.createElement('div');
+    h1coldiv.classList.add('col');
+    h1coldiv.classList.add('col-8');
+    h1coldiv.appendChild(h1video);
+
     source.setAttribute('src', playme);
     video.appendChild(source);
-    videodisplay.appendChild(video);
+
+    var r3 = document.createElement('div');
+    r3.appendChild(h1coldiv);
+    r3.classList.add('row-center');
+    video.classList.add('col');
+    video.classList.add('col-8');
+
+    r3.appendChild(video);
+
+    videodisplay.appendChild(r3);
   }
 
   function readJSON(data) {

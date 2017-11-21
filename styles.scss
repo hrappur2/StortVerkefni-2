@@ -22,6 +22,10 @@ img { /* stylelint-disable-line */
   max-width: 100%;
 }
 
+source {
+  max-width: 100%;
+}
+
 main {
   max-width: $max-width;
   margin: 0 auto;
@@ -29,4 +33,5 @@ main {
 }
 
 @import "scss/videolist";
+@import "scss/videoplay";
 @import "scss/grid";
