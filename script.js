@@ -73,6 +73,7 @@ var program = (function() {
 
       var f = document.createElement('div');
       f.classList.add('videolist__duration');
+      f.classList.add('col-1');
       var dur = data.videos[id-1].duration;
       var minutes = Math.floor(dur / 60);
       var seconds = dur - minutes * 60;
