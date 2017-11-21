@@ -21,12 +21,37 @@ var program = function () {
     var a = document.createElement('div');
     a.classList.add('videolist__category');
     var h2 = document.createElement('h2'); //element fyrir category titil
+    var r1 = document.createElement('div');
+    var c1 = document.createElement('div');
+    h2.classList.add('videolist__h2');
+
+    r1.classList.add('row');
+    c1.classList.add('col');
+    c1.classList.add('col-12');
+
     h2.innerHTML = data.categories[index].title;
-    a.appendChild(h2);
-    videolist.appendChild(a);
+
+    c1.appendChild(h2);
+    r1.appendChild(c1);
+    a.appendChild(r1);
+
+    var section = document.createElement('section');
+    var r2 = document.createElement('div');
+    var c2 = document.createElement('div');
+    r2.classList.add('row-center');
+    c2.classList.add('col');
+    c2.classList.add('col-10');
+    c2.classList.add('videolist__line');
+    r2.appendChild(c2);
+
+    section.appendChild(a);
+    section.appendChild(r2);
+
+    videolist.appendChild(section);
 
     var b = document.createElement('div');
     b.classList.add('videolist__videos');
+    b.classList.add('row');
     a.appendChild(b);
 
     var lengd = data.categories[index].videos.length; //lengd video fylkisins fyrir viðkomandi category
@@ -37,6 +62,8 @@ var program = function () {
 
       var c = document.createElement('div');
       c.classList.add('videolist__videoData');
+      c.classList.add('col');
+      c.classList.add('col-6');
       b.appendChild(c);
 
       var d = document.createElement('div');
@@ -110,6 +137,11 @@ var program = function () {
 
   function init() {
     videolist = document.querySelector('.videolist'); //divið í index.html
+
+    var h1 = document.createElement('h1');
+    h1.textContent = 'Myndbandaleigan';
+    videolist.appendChild(h1);
+
     readJSON(); //lesum videos.json
   }
 
