@@ -22,7 +22,6 @@ var program = (function() {
     h2.classList.add('videolist__h2');
 
     r1.classList.add('row');
-    c1.classList.add('col');
     c1.classList.add('col-12');
 
     h2.innerHTML = data.categories[index].title;
@@ -60,6 +59,7 @@ var program = (function() {
       c.classList.add('videolist__videoData');
       c.classList.add('col');
       c.classList.add('col-6');
+      c.classList.add('col-sm-12');
       b.appendChild(c);
 
       var d = document.createElement('div');
@@ -71,9 +71,8 @@ var program = (function() {
       e.classList.add('videolist__poster');
       d.appendChild(e);
 
-      var f = document.createElement('div');
+      var f = document.createElement('h4');
       f.classList.add('videolist__duration');
-      f.classList.add('col-1');
       var dur = data.videos[id-1].duration;
       var minutes = Math.floor(dur / 60);
       var seconds = dur - minutes * 60;
