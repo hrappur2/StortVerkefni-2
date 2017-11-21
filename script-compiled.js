@@ -67,7 +67,10 @@ var program = function () {
       c.classList.add('col-sms-12');
       b.appendChild(c);
 
-      var d = document.createElement('div');
+      var d = document.createElement('a');
+      d.setAttribute('id', data.videos[id - 1].id);
+      var videoid = data.videos[id - 1].id;
+      d.setAttribute('href', 'video.html?id=' + videoid);
       d.classList.add('videolist__posterAndDuration');
       c.appendChild(d);
 
@@ -120,6 +123,27 @@ var program = function () {
     }
   }
 
+  function displayvideo() {
+    var getlocal = window.localStorage.getItem('datastore');
+    var localparse = JSON.parse(getlocal);
+    var videodisplay = document.querySelector('.videodisplay');
+    var video = document.createElement('video');
+    var source = document.createElement('source');
+    video.setAttribute('autoplay', '');
+    var url = window.location.href;
+    var urlid = url.substring(url.length - 1);
+    var playme;
+    var iflength = localparse.videos.length;
+    if (urlid <= iflength) {
+      playme = localparse.videos[urlid - 1].video;
+    } else {
+      console.log('vantar error display herna');
+    }
+    source.setAttribute('src', playme);
+    video.appendChild(source);
+    videodisplay.appendChild(video);
+  }
+
   function readJSON(data) {
     //fall til að lesa videos.json
     var url = 'videos.json'; //verður að keyra live server svo virki!
@@ -130,6 +154,7 @@ var program = function () {
     r.onload = function () {
       if (r.status >= 200 && r.status < 400) {
         var results = JSON.parse(r.response); //'global' breyta
+        window.localStorage.setItem('datastore', JSON.stringify(results));
         showData(results); //sendum gögnin í showData fallið
       }
     }; //gera ráðstafanir fyrir errors?
@@ -139,11 +164,14 @@ var program = function () {
   function init() {
     videolist = document.querySelector('.videolist'); //divið í index.html
 
-    var h1 = document.createElement('h1');
-    h1.textContent = 'Myndbandaleigan';
-    videolist.appendChild(h1);
-
-    readJSON(); //lesum videos.json
+    if (videolist !== null) {
+      var h1 = document.createElement('h1');
+      h1.textContent = 'Myndbandaleigan';
+      videolist.appendChild(h1);
+      readJSON(); //lesum videos.json
+    } else {
+      displayvideo();
+    }
   }
 
   return {
