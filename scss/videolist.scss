@@ -6,8 +6,8 @@
   }
 
   &__h2 {
-    font-size: 2rem;
     padding: 0 $gutter / 2;
+    font-size: 2rem;
   }
 
   &__videos {
@@ -29,13 +29,13 @@
   }
 
   &__duration { //þarf að setja ofan á poster
-    background-color: rgba(0, 0, 0, 0.5);
-    font-weight: bold;
     position: absolute;
-    text-align: center;
-    bottom: $gutter;
     right: $gutter/2;
+    bottom: $gutter;
     padding: 0 $gutter/4;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   &__title {
@@ -44,7 +44,6 @@
     white-space: nowrap;
   }
 
-  /*&__created {
-
-  }*/
+  &__created {
+  }
 }
