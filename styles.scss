@@ -2,13 +2,13 @@
 
 html {
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.85);
-  font-size: 16px;
-  font-family: 'Lato', sans-serif;
-  line-height: 1.5;
-  color: white;
   margin-right: $gutter;
   margin-left: $gutter;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 *, *:before, *:after { /* stylelint-disable-line */
@@ -35,4 +35,4 @@ main {
 
 @import "scss/videolist";
 @import "scss/videoplay";
-@import "scss/grid"; 
+@import "scss/grid";

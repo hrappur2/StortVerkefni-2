@@ -1,7 +1,6 @@
 @import "scss/config";
 
 .videoplay {
-
   &__source {
     width: 100%;
   }
@@ -21,7 +20,7 @@
     max-height: $gutter*1.5;
     margin: $gutter/4;
     background: transparent;
-    border: none;
+    border: hidden;
   }
 
   &__goback {
@@ -32,14 +31,14 @@
 
   &__gobacklink {
     font-size: 1em;
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
   }
 
   &__error {
     display: flex;
-    flex-direction: column;
     text-align: center;
+    flex-direction: column;
   }
 
   &__hError {
@@ -51,12 +50,12 @@
   }
 
   &__overbutton {
-    max-width: $gutter*1.5;
-    max-height: $gutter*1.5;
     position: absolute;
-    background: transparent;
-    border: none;
     top: calc(((100% - 30px)) * 0.5);
     left: calc(((100% - 30px)) * 0.5);
+    max-width: $gutter*1.5;
+    max-height: $gutter*1.5;
+    background: transparent;
+    border: hidden;
   }
 }

@@ -1,16 +1,9 @@
 @import "config";
 
 .videolist {
-
-  &__category {
-  }
-
   &__h2 {
     padding: 0 $gutter / 2;
     font-size: 2rem;
-  }
-
-  &__videos {
   }
 
   &__line {
@@ -34,17 +27,14 @@
     bottom: $gutter;
     padding: 0 $gutter/4;
     font-weight: bold;
+    color: #fff;
     text-align: center;
     background-color: rgba(0, 0, 0, 0.5);
-    color: #ffffff;
   }
 
   &__title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  &__created {
   }
 }
