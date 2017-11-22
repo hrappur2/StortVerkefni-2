@@ -171,8 +171,11 @@ var program = (function() {
     h1coldiv.classList.add('col-8');
     h1coldiv.appendChild(h1video);
 
+    // Div fyrir video og overlay
+    overlayDiv = document.createElement('div');
     source.setAttribute('src', playme);
-    video.appendChild(source);
+    overlayDiv.appendChild(source);
+    video.appendChild(overlayDiv);
 
     const r3 = document.createElement('div');
     r3.appendChild(h1coldiv);
@@ -192,7 +195,6 @@ var program = (function() {
     pause = document.createElement('img');
     play = document.createElement('img');
     playOverlay = document.createElement('img');
-    overlayDiv = document.createElement('div');
     mute = document.createElement('img');
     unmute = document.createElement('img');
     fullscreen = document.createElement('img');
@@ -201,7 +203,7 @@ var program = (function() {
     next.classList.add('videoplay__button');
     pause.classList.add('videoplay__button');
     play.classList.add('videoplay__button');
-    playOverlay.classList.add('videoplay__button');
+    playOverlay.classList.add('videoplay__overbutton');
     overlayDiv.classList.add('videoplay__overlay');
     mute.classList.add('videoplay__button');
     unmute.classList.add('videoplay__button');
@@ -221,6 +223,7 @@ var program = (function() {
     imagediv.appendChild(mute);
     imagediv.appendChild(fullscreen);
     imagediv.appendChild(next);
+
     overlayDiv.appendChild(playOverlay);
 
     video.appendChild(imagediv);

@@ -17,9 +17,9 @@
   }
 
   &__button {
-    max-width: 2em;
-    max-height: 2em;
-    margin: 5px;
+    max-width: $gutter*1.5;
+    max-height: $gutter*1.5;
+    margin: $gutter/4;
   }
 
   &__goback {
@@ -35,9 +35,14 @@
   }
 
   &__overlay {
-    z-index: 2;
+    position: relative;
   }
 
-
-
+  &__overbutton {
+    max-width: $gutter*1.5;
+    max-height: $gutter*1.5;
+    position: absolute;
+    top: calc(((100% - 30px)) * 0.5);
+    left: calc(((100% - 30px)) * 0.5);
+  }
 }
