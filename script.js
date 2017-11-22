@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 var program = (function() {
   var videolist;
+  var video;
   var source;
 
   var imagediv;
@@ -11,6 +12,8 @@ var program = (function() {
   var next;
   var pause;
   var play;
+  var playOverlay;
+  var overlayDiv;
   var mute;
   var unmute;
   var fullscreen;
@@ -142,7 +145,7 @@ var program = (function() {
     const getlocal = window.localStorage.getItem('datastore');
     const localparse = JSON.parse(getlocal);
     const videodisplay = document.querySelector('.videodisplay');
-    const video = document.createElement('div');
+    video = document.createElement('div');
     video.classList.add('videoplay__video');
     source = document.createElement('video');
     source.setAttribute('autoplay','');
@@ -188,6 +191,8 @@ var program = (function() {
     next = document.createElement('img');
     pause = document.createElement('img');
     play = document.createElement('img');
+    playOverlay = document.createElement('img');
+    overlayDiv = document.createElement('div');
     mute = document.createElement('img');
     unmute = document.createElement('img');
     fullscreen = document.createElement('img');
@@ -196,6 +201,8 @@ var program = (function() {
     next.classList.add('videoplay__button');
     pause.classList.add('videoplay__button');
     play.classList.add('videoplay__button');
+    playOverlay.classList.add('videoplay__button');
+    overlayDiv.classList.add('videoplay__overlay');
     mute.classList.add('videoplay__button');
     unmute.classList.add('videoplay__button');
     fullscreen.classList.add('videoplay__button');
@@ -204,6 +211,7 @@ var program = (function() {
     next.src = "img/next.svg";
     pause.src = "img/pause.svg";
     play.src = "img/play.svg";
+    playOverlay.src = "img/play.svg";
     mute.src = "img/mute.svg";
     unmute.src = "img/unmute.svg";
     fullscreen.src = "img/fullscreen.svg";
@@ -213,6 +221,7 @@ var program = (function() {
     imagediv.appendChild(mute);
     imagediv.appendChild(fullscreen);
     imagediv.appendChild(next);
+    overlayDiv.appendChild(playOverlay);
 
     video.appendChild(imagediv);
 
@@ -220,6 +229,7 @@ var program = (function() {
     next.addEventListener("click", nextEvent);
     pause.addEventListener("click", pauseEvent);
     play.addEventListener("click", playEvent);
+    playOverlay.addEventListener("click", playOverlayEvent);
     mute.addEventListener("click", muteEvent);
     unmute.addEventListener("click", unmuteEvent);
     fullscreen.addEventListener("click", fullscreenEvent);
@@ -254,6 +264,9 @@ var program = (function() {
     source.pause();
     imagediv.removeChild(pause);
     imagediv.insertBefore(play, imagediv.children[1]);
+
+    video.insertBefore(overlayDiv, video.children[0]);
+
   }
 
   function playEvent(e) {
@@ -261,6 +274,13 @@ var program = (function() {
     source.play();
     imagediv.removeChild(play);
     imagediv.insertBefore(pause, imagediv.children[1]);
+  }
+
+  function playOverlayEvent(e) {
+    e.preventDefault();
+
+
+
   }
 
   function muteEvent(e) {
