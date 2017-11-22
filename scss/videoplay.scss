@@ -2,9 +2,6 @@
 
 .videoplay {
 
-  &__video {
-  }
-
   &__source {
     width: 100%;
   }
@@ -16,22 +13,25 @@
   &__buttons {
     display: flex;
     justify-content: center;
+    margin: 5px;
   }
 
   &__button {
-    max-width: 50px;
-    max-height: 50px;
-    margin: 0 5px;
+    max-width: 2em;
+    max-height: 2em;
+    margin: 5px;
   }
 
   &__goback {
     display: flex;
     justify-content: center;
-    margin: 2em;
+    margin: $gutter;
   }
 
   &__gobacklink {
     font-size: 1em;
+    color: #ffffff;
+    text-decoration: none;
   }
 
 

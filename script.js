@@ -213,7 +213,8 @@ var program = (function() {
     imagediv.appendChild(mute);
     imagediv.appendChild(fullscreen);
     imagediv.appendChild(next);
-    videodisplay.appendChild(imagediv);
+
+    video.appendChild(imagediv);
 
     back.addEventListener("click", backEvent);
     next.addEventListener("click", nextEvent);
@@ -227,7 +228,7 @@ var program = (function() {
     const gobackLink = document.createElement('a');
 
     gobackDiv.classList.add('videoplay__goback');
-    gobackLink.classList.add('videoplay__gobackLink');
+    gobackLink.classList.add('videoplay__gobacklink');
 
 
     gobackLink.appendChild(document.createTextNode('Til baka'));
@@ -235,7 +236,7 @@ var program = (function() {
     gobackLink.href = 'index.html';
 
     gobackDiv.appendChild(gobackLink);
-    videodisplay.appendChild(gobackDiv);
+    video.appendChild(gobackDiv);
   }
 
   function backEvent(e) {
