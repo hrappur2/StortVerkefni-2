@@ -20,6 +20,8 @@
     max-width: $gutter*1.5;
     max-height: $gutter*1.5;
     margin: $gutter/4;
+    background: transparent;
+    border: none;
   }
 
   &__goback {
@@ -52,6 +54,8 @@
     max-width: $gutter*1.5;
     max-height: $gutter*1.5;
     position: absolute;
+    background: transparent;
+    border: none;
     top: calc(((100% - 30px)) * 0.5);
     left: calc(((100% - 30px)) * 0.5);
   }

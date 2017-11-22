@@ -6,6 +6,8 @@ var program = (function() {
   var videolist;
   var video;
   var source;
+  var localparse;
+  var getlocal;
 
   var imagediv;
   var back;
@@ -17,6 +19,15 @@ var program = (function() {
   var mute;
   var unmute;
   var fullscreen;
+
+  var backImg;
+  var nextImg;
+  var pauseImg;
+  var playImg;
+  var playoverlayImg;
+  var muteImg;
+  var unmuteImg;
+  var fullscreenImg;
 
   function showData(data) { //sækir gögn og býr til element
     const lengd = data.categories.length; //hversu margir flokkar
@@ -141,15 +152,9 @@ var program = (function() {
     }
   }
 
-  function displayvideo() {
-    const getlocal = window.localStorage.getItem('datastore');
-    const localparse = JSON.parse(getlocal);
-    const videodisplay = document.querySelector('.videodisplay');
-    video = document.createElement('div');
-    video.classList.add('videoplay__video');
-    source = document.createElement('video');
-    source.setAttribute('autoplay','');
-    source.classList.add('videoplay__source');
+  function getvideo() {
+    getlocal = window.localStorage.getItem('datastore');
+    localparse = JSON.parse(getlocal);
     var url = window.location.href;
     var urlid = url.substring(url.length-1);
     var playme;
@@ -158,8 +163,10 @@ var program = (function() {
     if (urlid <= iflength) {
       playme = localparse.videos[urlid-1].video;
       playmetitle = localparse.videos[urlid-1].title;
+      showvideo(playme, playmetitle);
     }
     else {
+      const videodisplay = document.querySelector('.videodisplay');
       const errorDiv = document.createElement('div');
       errorDiv.classList.add('videoplay__error');
 
@@ -173,6 +180,17 @@ var program = (function() {
       errorDiv.appendChild(h4);
       videodisplay.appendChild(errorDiv);
     }
+
+  }
+
+  function showvideo(playme, playmetitle) {
+
+    const videodisplay = document.querySelector('.videodisplay');
+    video = document.createElement('div');
+    video.classList.add('videoplay__video');
+    source = document.createElement('video');
+    source.classList.add('videoplay__source');
+
     const h1video = document.createElement('h1');
     h1video.classList.add('videoplay__h1');
     const jsontitle = JSON.stringify(playmetitle);
@@ -201,14 +219,23 @@ var program = (function() {
 
     imagediv.classList.add('videoplay__buttons');
 
-    back = document.createElement('img');
-    next = document.createElement('img');
-    pause = document.createElement('img');
-    play = document.createElement('img');
-    playOverlay = document.createElement('img');
-    mute = document.createElement('img');
-    unmute = document.createElement('img');
-    fullscreen = document.createElement('img');
+    back = document.createElement('button');
+    next = document.createElement('button');
+    pause = document.createElement('button');
+    play = document.createElement('button');
+    playOverlay = document.createElement('button');
+    mute = document.createElement('button');
+    unmute = document.createElement('button');
+    fullscreen = document.createElement('button');
+
+    backImg = document.createElement('img');
+    nextImg = document.createElement('img');
+    pauseImg = document.createElement('img');
+    playImg = document.createElement('img');
+    playoverlayImg = document.createElement('img');
+    muteImg = document.createElement('img');
+    unmuteImg = document.createElement('img');
+    fullscreenImg = document.createElement('img');
 
     back.classList.add('videoplay__button');
     next.classList.add('videoplay__button');
@@ -220,17 +247,26 @@ var program = (function() {
     unmute.classList.add('videoplay__button');
     fullscreen.classList.add('videoplay__button');
 
-    back.src = "img/back.svg";
-    next.src = "img/next.svg";
-    pause.src = "img/pause.svg";
-    play.src = "img/play.svg";
-    playOverlay.src = "img/play.svg";
-    mute.src = "img/mute.svg";
-    unmute.src = "img/unmute.svg";
-    fullscreen.src = "img/fullscreen.svg";
+    backImg.src = "img/back.svg";
+    nextImg.src = "img/next.svg";
+    pauseImg.src = "img/pause.svg";
+    playImg.src = "img/play.svg";
+    playoverlayImg.src = "img/play.svg";
+    muteImg.src = "img/mute.svg";
+    unmuteImg.src = "img/unmute.svg";
+    fullscreenImg.src = "img/fullscreen.svg";
+
+    back.appendChild(backImg);
+    next.appendChild(nextImg);
+    pause.appendChild(pauseImg);
+    play.appendChild(playImg);
+    playOverlay.appendChild(playoverlayImg);
+    mute.appendChild(muteImg);
+    unmute.appendChild(unmuteImg);
+    fullscreen.appendChild(fullscreenImg);
 
     imagediv.appendChild(back);
-    imagediv.appendChild(pause);
+    imagediv.appendChild(play);
     imagediv.appendChild(mute);
     imagediv.appendChild(fullscreen);
     imagediv.appendChild(next);
@@ -243,7 +279,7 @@ var program = (function() {
     next.addEventListener("click", nextEvent);
     pause.addEventListener("click", pauseEvent);
     play.addEventListener("click", playEvent);
-    playOverlay.addEventListener("click", playOverlayEvent);
+    source.addEventListener("click", playOverlayEvent);
     mute.addEventListener("click", muteEvent);
     unmute.addEventListener("click", unmuteEvent);
     fullscreen.addEventListener("click", fullscreenEvent);
@@ -261,6 +297,7 @@ var program = (function() {
 
     gobackDiv.appendChild(gobackLink);
     video.appendChild(gobackDiv);
+
   }
 
   function backEvent(e) {
@@ -293,8 +330,17 @@ var program = (function() {
   function playOverlayEvent(e) {
     e.preventDefault();
 
-
-
+    if (source.currentTime > 0 && !source.paused && !source.ended) {
+      source.pause();
+      imagediv.removeChild(pause);
+      imagediv.insertBefore(play, imagediv.children[1]);
+      overlayDiv.appendChild(playOverlay);
+    } else {
+      source.play();
+      imagediv.removeChild(play);
+      imagediv.insertBefore(pause, imagediv.children[1]);
+      overlayDiv.removeChild(playOverlay);
+    }
   }
 
   function muteEvent(e) {
@@ -341,7 +387,7 @@ var program = (function() {
       readJSON(); //lesum videos.json
     }
     else {
-      displayvideo();
+      getvideo();
     }
   }
 
