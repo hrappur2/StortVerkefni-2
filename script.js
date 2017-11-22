@@ -160,7 +160,18 @@ var program = (function() {
       playmetitle = localparse.videos[urlid-1].title;
     }
     else {
-      console.log('vantar error display herna');
+      const errorDiv = document.createElement('div');
+      errorDiv.classList.add('videoplay__error');
+
+      const h1 = document.createElement('h1');
+      h1.classList.add('videoplay__hError');
+      h1.textContent = 'Myndbandaleigan';
+      errorDiv.appendChild(h1);
+      const h4 = document.createElement('h4');
+      h4.classList.add('videoplay__hError');
+      h4.textContent = 'Videó er ekki til';
+      errorDiv.appendChild(h4);
+      videodisplay.appendChild(errorDiv);
     }
     const h1video = document.createElement('h1');
     h1video.classList.add('videoplay__h1');

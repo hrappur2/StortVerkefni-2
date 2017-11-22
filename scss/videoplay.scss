@@ -34,6 +34,16 @@
     text-decoration: none;
   }
 
+  &__error {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  &__hError {
+    margin: 10px;
+  }
+
   &__overlay {
     z-index: 2;
   }
