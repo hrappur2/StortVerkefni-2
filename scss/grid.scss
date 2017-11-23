@@ -72,6 +72,10 @@
         @include columns(12);
       }
 
+      &-10 {
+        @include columns(10);
+      }
+
       &-8 {
         @include columns(8);
       }

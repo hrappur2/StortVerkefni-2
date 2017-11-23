@@ -64,7 +64,6 @@ const program = (function videoSite() {
     const lengd = data.categories[index].videos.length;
     // lengd video fylkisins fyrir viðkomandi category
 
-    // ATH eftir að adda link á myndir og ná í tímaupplýsingar úr json
     for (let i = 0; i < lengd; i += 1) {
       const id = data.categories[index].videos[i];
 
@@ -83,7 +82,7 @@ const program = (function videoSite() {
       d.classList.add('videolist__posterAndDuration');
       c.appendChild(d);
 
-      const e = document.createElement('img'); // ATH á eftir að adda link á myndirnar
+      const e = document.createElement('img');
       e.setAttribute('src', data.videos[id - 1].poster);
       e.classList.add('videolist__poster');
       d.appendChild(e);
@@ -232,7 +231,7 @@ const program = (function videoSite() {
     r3.appendChild(h1coldiv);
     r3.classList.add('row-center');
     video.classList.add('col');
-    video.classList.add('col-8');
+    video.classList.add('col-12');
     r3.appendChild(video);
 
     videodisplay.appendChild(r3);
@@ -351,16 +350,23 @@ const program = (function videoSite() {
 
   function readJSON() { // fall til að lesa videos.json
     const url = 'videos.json'; // verður að keyra live server svo virki!
-    // showLoading();
     const r = new XMLHttpRequest();
     r.open('GET', url, true);
     r.onload = function read() {
       if (r.status >= 200 && r.status < 400) {
-        const results = JSON.parse(r.response); // 'global' breyta
+        const results = JSON.parse(r.response);
         window.localStorage.setItem('datastore', JSON.stringify(results));
         showData(results); // sendum gögnin í showData fallið
       }
-    }; // gera ráðstafanir fyrir errors?
+    };
+    r.onerror = function dataError() {
+      const connectError = document.createElement('div');
+      const errorMessage = document.createElement('h4');
+      errorMessage.classList.add('videoplay__error');
+      errorMessage.textContent = 'Gat ekki hlaðið gögnum';
+      connectError.appendChild(errorMessage);
+      videolist.appendChild(connectError);
+    };
     r.send();
   }
 

@@ -66,7 +66,6 @@ var program = function videoSite() {
     var lengd = data.categories[index].videos.length;
     // lengd video fylkisins fyrir viðkomandi category
 
-    // ATH eftir að adda link á myndir og ná í tímaupplýsingar úr json
     for (var i = 0; i < lengd; i += 1) {
       var id = data.categories[index].videos[i];
 
@@ -85,7 +84,7 @@ var program = function videoSite() {
       d.classList.add('videolist__posterAndDuration');
       c.appendChild(d);
 
-      var e = document.createElement('img'); // ATH á eftir að adda link á myndirnar
+      var e = document.createElement('img');
       e.setAttribute('src', data.videos[id - 1].poster);
       e.classList.add('videolist__poster');
       d.appendChild(e);
@@ -231,7 +230,7 @@ var program = function videoSite() {
     r3.appendChild(h1coldiv);
     r3.classList.add('row-center');
     video.classList.add('col');
-    video.classList.add('col-8');
+    video.classList.add('col-12');
     r3.appendChild(video);
 
     videodisplay.appendChild(r3);
@@ -351,16 +350,23 @@ var program = function videoSite() {
   function readJSON() {
     // fall til að lesa videos.json
     var url = 'videos.json'; // verður að keyra live server svo virki!
-    // showLoading();
     var r = new XMLHttpRequest();
     r.open('GET', url, true);
     r.onload = function read() {
       if (r.status >= 200 && r.status < 400) {
-        var results = JSON.parse(r.response); // 'global' breyta
+        var results = JSON.parse(r.response);
         window.localStorage.setItem('datastore', JSON.stringify(results));
         showData(results); // sendum gögnin í showData fallið
       }
-    }; // gera ráðstafanir fyrir errors?
+    };
+    r.onerror = function dataError() {
+      var connectError = document.createElement('div');
+      var errorMessage = document.createElement('h4');
+      errorMessage.classList.add('videoplay__error');
+      errorMessage.textContent = 'Gat ekki hlaðið gögnum';
+      connectError.appendChild(errorMessage);
+      videolist.appendChild(connectError);
+    };
     r.send();
   }
 
