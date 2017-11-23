@@ -1,6 +1,10 @@
 @import "config";
 
 .videolist {
+  &__created {
+    cursor: text;
+  }
+
   &__h2 {
     padding: 0 $gutter / 2;
     font-size: 2rem;
@@ -33,7 +37,12 @@
   }
 
   &__title {
+    display: block;
     overflow: hidden;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
   }

@@ -97,9 +97,10 @@ const program = (function videoSite() {
       f.textContent = `${minutes}:${seconds}`;
       d.appendChild(f);
 
-      const g = document.createElement('h4');
+      const g = document.createElement('a');
       g.classList.add('videolist__title');
-      g.textContent = data.videos[id - 1].title;
+      g.appendChild(document.createTextNode(data.videos[id - 1].title));
+      g.href = `video.html?id=${videoid}`;
       c.appendChild(g);
 
       const created = Date.now() - data.videos[id - 1].created; // ms síðan var uploadað
@@ -173,24 +174,6 @@ const program = (function videoSite() {
   function overlaybuttonEvent(e) {
     e.preventDefault();
 
-    console.log('overlaybuttonevent!');
-    if (source.currentTime > 0 && !source.paused && !source.ended) {
-      source.pause();
-      imagediv.removeChild(pause);
-      imagediv.insertBefore(play, imagediv.children[1]);
-      overlayDiv.appendChild(playOverlay);
-    } else {
-      source.play();
-      imagediv.removeChild(play);
-      imagediv.insertBefore(pause, imagediv.children[1]);
-      overlayDiv.removeChild(playOverlay);
-    }
-  }
-
-  function playOverlayEvent(e) {
-    e.preventDefault();
-
-    console.log('playoverlayevent!');
     if (source.currentTime > 0 && !source.paused && !source.ended) {
       source.pause();
       imagediv.removeChild(pause);
@@ -318,7 +301,6 @@ const program = (function videoSite() {
     next.addEventListener('click', nextEvent);
     pause.addEventListener('click', pauseEvent);
     play.addEventListener('click', playEvent);
-    source.addEventListener('click', playOverlayEvent);
     overlayDiv.addEventListener('click', overlaybuttonEvent);
     mute.addEventListener('click', muteEvent);
     unmute.addEventListener('click', unmuteEvent);
@@ -329,7 +311,6 @@ const program = (function videoSite() {
 
     gobackDiv.classList.add('videoplay__goback');
     gobackLink.classList.add('videoplay__gobacklink');
-
 
     gobackLink.appendChild(document.createTextNode('Til baka'));
     gobackLink.title = 'Til baka';
